@@ -29,6 +29,10 @@ function silpaspell_suggest(&$dict, $word){
     return $dict->suggest($word);
 }
 
+function silpaspell_check_batch(&$dict, $word){
+    return $dict->check_batch($word);
+}
+
 /**
  * Class to provide pspell functionality through silpa
  *
@@ -82,6 +86,24 @@ class SilpaSpell
 			return true;
 		}
 		return false;
+    }
+
+    function check_batch($text)
+    {
+    	$text = trim($text);
+
+	if(empty($text))
+	{
+	    return $text;
+	}
+
+	$words = json_decode($this->service->execute('modules.Spellchecker.check_batch',array($text)));
+	if(!empty($words))
+	{
+	    return $words;
+	}
+
+	return $text;
     }
 }
 ?>
