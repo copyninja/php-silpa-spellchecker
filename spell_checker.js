@@ -22,7 +22,7 @@ var SpellChecker = new Class({
 
         options: {
             useImages: true,
-            url: 'spell_checker.php',
+            url: 'spellcheck.php',
             confirmAfterAllWordsChecked: true,
             alertOnNoMisspellings: true
         },
